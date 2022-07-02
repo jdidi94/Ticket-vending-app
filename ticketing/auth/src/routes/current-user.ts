@@ -1,7 +1,8 @@
 import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 const router = express.Router();
-import { currentUser } from "../middleware/current-user";
+import { currentUser } from "@ts-middleweares/commons";
+
 router.get("/api/users/currentuser", currentUser, async (req, res) => {
   console.log("hi");
 

@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { BadrequestError } from "../errors/bad-request-error";
+import { BadrequestError, validateRequest } from "@ts-middleweares/commons";
 import jwt from "jsonwebtoken";
 
 import { body } from "express-validator";
