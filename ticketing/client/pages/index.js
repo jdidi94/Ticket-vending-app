@@ -1,4 +1,17 @@
-const app = () => {
-  return <h1>app</h1>;
+import buildClient from "../api/build-client";
+
+const App = ({ currentUser }) => {
+  console.log(currentUser);
+
+  return currentUser ? <h1>you are sign in</h1> : <h1>You are not sign in</h1>;
 };
-export default app;
+App.getInitialProps = async (context) => {
+  const { data } = await buildClient(context)
+    .get("/api/users/currentuser")
+    .catch((err) => {
+      console.log(err.message);
+    });
+  console.log(data);
+  return data;
+};
+export default App;

@@ -14,11 +14,12 @@ app.use(json());
 app.use(
   cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV !== "test",
+    secure: false,
+    // secure: process.env.NODE_ENV !== "test",
   })
 );
-console.log(process.env.NODE_ENV);
-console.log(process.env.JWT_KEY);
+// console.log(process.env.NODE_ENV);
+// console.log(process.env.JWT_KEY);
 app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);

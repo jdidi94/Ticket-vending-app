@@ -1,5 +1,5 @@
 import Mongoose from "mongoose";
-
+import "express-async-errors";
 import { app } from "./app";
 const start = async () => {
   try {
