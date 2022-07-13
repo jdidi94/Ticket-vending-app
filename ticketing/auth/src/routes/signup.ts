@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import { validateRequest } from "../middleware/validate-request";
+import { validateRequest, BadRequestError } from "@new-developers/work";
 import jwt from "jsonwebtoken";
-import { BadrequestError } from "../errors/bad-request-error";
+
 import { User } from "../models/user-model";
 
 interface IGetUserAuthInfoRequest extends Request {
@@ -26,7 +26,7 @@ router.post(
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      throw new BadrequestError("email in use");
+      throw new BadRequestError("email in use");
     }
     const user = User.build({ email, password });
     await user.save();
@@ -34,7 +34,7 @@ router.post(
       { id: user._id, email: user.email, password: user.password },
       process.env.JWT_KEY!
     );
-
+    // @ts-ignore
     req.session = {
       jwt: userJwt,
     };

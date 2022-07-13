@@ -2,11 +2,9 @@ import express from "express";
 import { json } from "body-parser";
 import "express-async-errors";
 import cookieSession from "cookie-session";
-import { currentUserRouter } from "./routes/current-user";
-import { errorHandler, NotFoundError } from "@new-developers/work";
-import { signinRouter } from "./routes/signin";
-import { signoutRouter } from "./routes/signout";
-import { signupRouter } from "./routes/signup";
+import { createTicketRouter } from "./routes/new";
+import { errorHandler, NotFoundError,currentUser } from "@new-developers/work";
+
 const app = express();
 app.set("tust proxy", true);
 app.use(json());
@@ -17,13 +15,10 @@ app.use(
     // secure: process.env.NODE_ENV !== "test",
   })
 );
+app.use(currentUser)
 // console.log(process.env.NODE_ENV);
 // console.log(process.env.JWT_KEY);
-app.use(currentUserRouter);
-app.use(signinRouter);
-app.use(signoutRouter);
-app.use(signupRouter);
-
+app.use(createTicketRouter);
 app.get("*", async () => {
   throw new NotFoundError();
 });
