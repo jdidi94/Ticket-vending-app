@@ -24,6 +24,7 @@ app.use(currentUser);
 app.use(createTicketRouter);
 app.use(showTicketRouter);
 app.use(fetchTickets);
+app.use(updateTicketRouter);
 app.get("*", async () => {
   throw new NotFoundError();
 });

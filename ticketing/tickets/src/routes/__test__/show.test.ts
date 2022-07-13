@@ -26,7 +26,7 @@ it("it returns the ticket if the ticket is found", async () => {
     .get(`/api/tickets/${response.body.id}`)
     .send()
     .expect(200);
-  console.log("ticketResponse", ticketResponse.body);
+
   // @ts-ignore
 
   expect(ticketResponse.body.title).toEqual(title);
