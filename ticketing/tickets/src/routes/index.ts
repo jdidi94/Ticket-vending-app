@@ -1,12 +1,8 @@
 import express, { Request, Response } from "express";
 
 import { Ticket } from "../models/ticket-model";
-import {
-  requireAuth,
-  validateRequest,
-  NotFoundError,
-} from "@new-developers/work";
-import { body } from "express-validator";
+import { NotFoundError } from "@new-developers/work";
+
 const router = express.Router();
 router.get("/api/tickets", async (req: Request, res: Response) => {
   const ticket = await Ticket.find({});
