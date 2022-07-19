@@ -2,6 +2,7 @@ import request from "supertest";
 import mongoose from "mongoose";
 import { Ticket } from "../../models/ticket-model";
 import { app } from "../../app";
+
 // @ts-ignore
 
 it("returns a 404 if the id not exists", async () => {

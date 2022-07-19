@@ -2,6 +2,7 @@ import request from "supertest";
 import { Ticket } from "../../models/ticket-model";
 import mongoose from "mongoose";
 import { app } from "../../app";
+
 // @ts-ignore
 
 it("it returns all tickets", async () => {

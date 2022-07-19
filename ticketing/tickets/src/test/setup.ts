@@ -1,10 +1,11 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { app } from "../app";
 import jwt from "jsonwebtoken";
 declare global {
   function signin(): string[];
 }
+// @ts-ignore
+jest.mock("../nats-wrapper");
 let mongo: any;
 // @ts-ignore
 beforeAll(async () => {
