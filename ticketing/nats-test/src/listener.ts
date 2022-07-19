@@ -1,5 +1,5 @@
-import nats, { Message, Stan } from "node-nats-streaming";
-import { TicketCreatedListener } from "./events/ticket-created-listener";
+import nats from "node-nats-streaming";
+import { TicketCreatedListener } from "@new-developers/work";
 import { randomBytes } from "crypto";
 console.clear();
 const stan = nats.connect("ticketing", randomBytes(4).toString("hex"), {
