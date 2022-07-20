@@ -2,11 +2,11 @@ import express from "express";
 import { json } from "body-parser";
 import "express-async-errors";
 import cookieSession from "cookie-session";
-// import { createTicketRouter } from "./routes/new";
+import { createOrderRouter } from "./routes/new";
 import { errorHandler, NotFoundError, currentUser } from "@new-developers/work";
-// import { showTicketRouter } from "./routes/show";
-// import { fetchTickets } from "./routes/index";
-// import { updateTicketRouter } from "./routes/updates";
+import { showOrderRouter } from "./routes/show";
+import { fetchOrders } from "./routes/index";
+import { deleteOrderRouter } from "./routes/delete";
 
 const app = express();
 app.set("tust proxy", true);
@@ -18,13 +18,12 @@ app.use(
     // secure: process.env.NODE_ENV !== "test",
   })
 );
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 app.use(currentUser);
-// console.log(process.env.NODE_ENV);
-// console.log(process.env.JWT_KEY);
-// app.use(createTicketRouter);
-// app.use(showTicketRouter);
-// app.use(fetchTickets);
-// app.use(updateTicketRouter);
+app.use(createOrderRouter);
+app.use(showOrderRouter);
+app.use(fetchOrders);
+app.use(deleteOrderRouter);
 app.get("*", async () => {
   throw new NotFoundError();
 });
