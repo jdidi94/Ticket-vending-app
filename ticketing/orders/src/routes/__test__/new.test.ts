@@ -42,3 +42,16 @@ it("it reserves a ticket", async () => {
     .send({ ticketId: ticket.id })
     .expect(201);
 });
+// @ts-ignore
+
+it("emits an order created event", async () => {
+  const ticket = Ticket.build({ title: "helooo", price: 100 });
+  await ticket.save();
+  await request(app)
+    .post("/api/orders")
+    .set("Cookie", global.signin())
+    .send({ ticketId: ticket.id })
+    .expect(201);
+  // @ts-ignore
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+});

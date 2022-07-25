@@ -7,7 +7,7 @@ declare global {
   function signin(): string[];
 }
 // @ts-ignore
-// jest.mock("../nats-wrapper");
+jest.mock("../nats-wrapper");
 let mongo: any;
 // @ts-ignore
 beforeAll(async () => {
