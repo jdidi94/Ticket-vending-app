@@ -1,11 +1,13 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
+
+// import jest from "jest";
 declare global {
   function signin(): string[];
 }
 // @ts-ignore
-jest.mock("../nats-wrapper");
+// jest.mock("../nats-wrapper");
 let mongo: any;
 // @ts-ignore
 beforeAll(async () => {
@@ -27,7 +29,7 @@ beforeEach(async () => {
 afterAll(async () => {
   await mongo.stop();
 
-  await mongoose.connection.close();
+  mongoose.connection.close();
 });
 global.signin = () => {
   const payload = {
