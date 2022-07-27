@@ -8,7 +8,11 @@ import { Ticket } from "../../models/ticket-model";
 // @ts-ignore
 it("marks an order as cancelled", async () => {
   const user = global.signin();
-  const ticket = Ticket.build({ title: "helooo", price: 100 });
+  const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
+    title: "helooo",
+    price: 100,
+  });
   await ticket.save();
   const { body: order } = await request(app)
     .post("/api/orders")
@@ -27,7 +31,11 @@ it("marks an order as cancelled", async () => {
 // @ts-ignore
 it("emits an order cancelled event", async () => {
   const user = global.signin();
-  const ticket = Ticket.build({ title: "helooo", price: 100 });
+  const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
+    title: "helooo",
+    price: 100,
+  });
   await ticket.save();
   const { body: order } = await request(app)
     .post("/api/orders")

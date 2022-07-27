@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import { TicketDoc } from "./ticket-model";
-import { OrderStatus } from "@new-developers/work";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
+
+import { OrderStatus } from "@new-developers/work";
 
 interface OrderAttrs {
   userId: string;

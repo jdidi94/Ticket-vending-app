@@ -17,7 +17,11 @@ it("returns an error if the ticket  does not exist", async () => {
 });
 // @ts-ignore
 it("returns an error if the ticket is already reserved", async () => {
-  const ticket = Ticket.build({ title: "helooo", price: 100 });
+  const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
+    title: "helooo",
+    price: 100,
+  });
   await ticket.save();
   const order = Order.build({
     ticket,
@@ -34,7 +38,11 @@ it("returns an error if the ticket is already reserved", async () => {
 });
 // @ts-ignore
 it("it reserves a ticket", async () => {
-  const ticket = Ticket.build({ title: "helooo", price: 100 });
+  const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
+    title: "helooo",
+    price: 100,
+  });
   await ticket.save();
   await request(app)
     .post("/api/orders")
@@ -45,7 +53,11 @@ it("it reserves a ticket", async () => {
 // @ts-ignore
 
 it("emits an order created event", async () => {
-  const ticket = Ticket.build({ title: "helooo", price: 100 });
+  const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
+    title: "helooo",
+    price: 100,
+  });
   await ticket.save();
   await request(app)
     .post("/api/orders")

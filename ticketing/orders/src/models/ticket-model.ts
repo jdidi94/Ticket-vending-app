@@ -5,7 +5,7 @@ import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 interface TicketAttrs {
   title: string;
   price: number;
-  id?: string;
+  id: string;
 }
 export interface TicketDoc extends mongoose.Document {
   title: string;
@@ -38,7 +38,7 @@ ticketSchema.set("versionKey", "version");
 ticketSchema.plugin(updateIfCurrentPlugin);
 
 ticketSchema.statics.findByEvent = (event: { id: string; version: number }) => {
-  return Ticket.findOne({ _id: event.id, version: event.version });
+  return Ticket.findOne({ _id: event.id, version: event.version - 1 });
 };
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
   return new Ticket({
