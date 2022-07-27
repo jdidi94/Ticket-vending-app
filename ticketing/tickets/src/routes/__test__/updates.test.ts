@@ -30,7 +30,7 @@ it("returns a 401 if the user does not own the tickets", async () => {
     .post(`/api/tickets`)
     .set("Cookie", global.signin())
     .send({ title: "dfkjdz", price: 20 });
-  console.log("response", response.body);
+
   await request(app)
     .put(`/api/tickets/${response.body.id}`)
     .set("Cookie", global.signin())
@@ -44,7 +44,7 @@ it("returns a 400 if the user provides an invalid title or price", async () => {
     .post(`/api/tickets`)
     .set("Cookie", global.signin())
     .send({ title: "dfkjdz", price: 20 });
-  console.log("response", response.body);
+
   await request(app)
     .put(`/api/tickets/${response.body.id}`)
     .set("Cookie", global.signin())
@@ -64,7 +64,6 @@ it("updates the tickets proided valid inputs", async () => {
     .post(`/api/tickets`)
     .set("Cookie", cookie)
     .send({ title: "dfkjdz", price: 20 });
-  console.log("response", response.body);
 
   await request(app)
     .put(`/api/tickets/${response.body.id}`)
@@ -79,4 +78,21 @@ it("updates the tickets proided valid inputs", async () => {
   expect(upadates.body.title).toEqual("nkqsnkjq");
   // @ts-ignore
   expect(upadates.body.price).toEqual(10);
+});
+// @ts-ignore
+it("rejects updates if the tickets is reserved ", async () => {
+  const cookie = global.signin();
+
+  const response = await request(app)
+    .post(`/api/tickets`)
+    .set("Cookie", cookie)
+    .send({ title: "dfkjdz", price: 20 });
+  const ticket = await Ticket.findById(response.body.id);
+  ticket!.set({ orderId: new mongoose.Types.ObjectId().toHexString() });
+  await ticket!.save();
+  await request(app)
+    .put(`/api/tickets/${response.body.id}`)
+    .set("Cookie", cookie)
+    .send({ title: "nkqsnkjq", price: 10 })
+    .expect(400);
 });

@@ -9,6 +9,7 @@ import {
   validateRequest,
   NotFoundError,
   NotAuthorizedError,
+  BadRequestError,
 } from "@new-developers/work";
 import { body } from "express-validator";
 
@@ -30,6 +31,9 @@ router.put(
     const { title, price } = req.body;
     if (!ticket) {
       throw new NotFoundError();
+    }
+    if (ticket.orderId) {
+      throw new BadRequestError("cannot edit a reserved ticket");
     }
 
     if (ticket.userId !== req.currentUser!.id) {

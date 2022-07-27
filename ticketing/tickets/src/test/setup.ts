@@ -7,7 +7,7 @@ declare global {
 // @ts-ignore
 jest.mock("../nats-wrapper");
 let mongo: any;
-
+// @ts-ignore
 beforeAll(async () => {
   process.env.JWT_KEY = "asdfdsx";
   mongo = new MongoMemoryServer();
