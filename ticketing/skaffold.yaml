@@ -5,12 +5,10 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: ticketing-vending-app
+  local:
+    push: false
   artifacts:
-    - image: gcr.io/ticketing-vending-app/auth
+    - image: 27334774/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -18,7 +16,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: gcr.io/ticketing-vending-app/client
+    - image: 27334774/client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -26,7 +24,7 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
-    - image: gcr.io/ticketing-vending-app/tickets
+    - image: 27334774/tickets
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -34,7 +32,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: gcr.io/ticketing-vending-app/orders
+    - image: 27334774/orders
       context: orders
       docker:
         dockerfile: Dockerfile
@@ -42,7 +40,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: gcr.io/ticketing-vending-app/expiration
+    - image: 27334774/expiration
       context: expiration
       docker:
         dockerfile: Dockerfile

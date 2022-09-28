@@ -1,9 +1,14 @@
 import Link from "next/link";
-const Header = ({ currentUser }) => {
+const Header = (props) => {
+  console.log(props);
+
   const links = [
-    !currentUser && { label: "Sign Up", href: "/auth/signup" },
-    !currentUser && { label: "Sign In", href: "/auth/signin" },
-    currentUser && { label: "Sign Out", href: "/auth/signout" },
+    // !currentUser &&
+    { label: "Sign Up", href: "/auth/signup" },
+    // !currentUser &&
+    { label: "Sign In", href: "/auth/signin" },
+    // currentUser &&
+    { label: "Sign Out", href: "/auth/signout" },
   ]
     .filter((linkConfig) => linkConfig)
     .map(({ label, href }) => {

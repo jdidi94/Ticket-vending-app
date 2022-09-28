@@ -14,16 +14,16 @@ spec:
     spec:
       containers:
         - name: tickets
-          image: gcr.io/ticketing-vending-app/tickets
+          image: 27334774/tickets
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
             - name: NATS_URL
-              value: "https://nats-srv:4222"
+              value: "http://nats-srv:4222"
             - name: NATS_CLUSTER_ID
-              value: "ticketing"
+              value: ticketing
             - name: MONGO_URI
               value: "mongodb://tickets-mongo-srv:27017/tickets"
             - name: JWT_KEY
@@ -31,7 +31,6 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
-
 ---
 apiVersion: v1
 kind: Service

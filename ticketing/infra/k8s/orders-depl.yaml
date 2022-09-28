@@ -1,47 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: orders-depl
+  name: expiration-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: orders
+      app: expiration
   template:
     metadata:
       labels:
-        app: orders
+        app: expiration
     spec:
       containers:
-        - name: orders
-          image: gcr.io/ticketing-vending-app/orders
+        - name: expiration
+          image: 27334774/expiration
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
             - name: NATS_URL
-              value: "https://nats-srv:4222"
+              value: "http://nats-srv:4222"
             - name: NATS_CLUSTER_ID
-              value: "ticketing"
-            - name: MONGO_URI
-              value: "mongodb://orders-mongo-srv:27017/orders"
-            - name: JWT_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-secret
-                  key: JWT_KEY
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: orders-srv
-spec:
-  selector:
-    app: orders
-  ports:
-    - name: orders
-      protocol: TCP
-      port: 3000
-      targetPort: 3000
+              value: ticketing
+            - name: REDIS_HOST
+              value: expiration-redis-srv
