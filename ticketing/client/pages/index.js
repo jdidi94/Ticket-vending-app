@@ -11,7 +11,7 @@ App.getInitialProps = async (context) => {
     .catch((err) => {
       console.log(err.message);
     });
-  console.log(data);
+  console.log("dataIndex", data);
   return data;
 };
 export default App;

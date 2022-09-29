@@ -6,7 +6,7 @@ import { Ticket } from "../models/ticket-model";
 import { Order } from "../models/orders-model";
 
 const router = express.Router();
-const EXPIRATION_WINDOW_SECONDS = 15 * 60;
+const EXPIRATION_WINDOW_SECONDS = 1 * 60;
 import {
   requireAuth,
   validateRequest,

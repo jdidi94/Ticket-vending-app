@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@new-developers/work": "^1.0.12",
+    "@new-developers/work": "^1.0.17",
     "@types/bull": "^3.15.9",
     "bull": "^4.8.5",
     "node-nats-streaming": "^0.3.2",
