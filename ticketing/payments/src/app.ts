@@ -2,6 +2,7 @@ import express from "express";
 import { json } from "body-parser";
 import "express-async-errors";
 import cookieSession from "cookie-session";
+import { createChargeRouter } from "./routes/new";
 
 import { errorHandler, NotFoundError, currentUser } from "@new-developers/work";
 
@@ -16,6 +17,7 @@ app.use(
   })
 );
 app.use(currentUser);
+app.use(createChargeRouter);
 // console.log(process.env.NODE_ENV);
 // console.log(process.env.JWT_KEY);
 

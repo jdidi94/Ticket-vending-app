@@ -2,7 +2,9 @@ import { natsWrapper } from "./nats-wrapper";
 import Mongoose from "mongoose";
 import "express-async-errors";
 import { app } from "./app";
+import { OrderCancelledListener } from "./events/listeners/order-cancelled-listener";
 
+import { OrdercreatedListener } from "./events/listeners/order-created-listener";
 const start = async () => {
   if (!process.env.MONGO_URI) {
     throw new Error("MONGO_URI  should be defined");
@@ -31,7 +33,8 @@ const start = async () => {
     });
     process.on("SIGNIT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
-
+    new OrderCancelledListener(natsWrapper.client).listen();
+    new OrdercreatedListener(natsWrapper.client).listen();
     await Mongoose.connect(process.env.MONGO_URI);
     console.log("connected to mongodb");
   } catch (err) {
