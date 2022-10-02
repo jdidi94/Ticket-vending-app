@@ -10,7 +10,6 @@ import {
   NotFoundError,
   NotAuthorizedError,
 } from "@new-developers/work";
-import { body } from "express-validator";
 
 router.delete(
   "/api/orders/:orderId",

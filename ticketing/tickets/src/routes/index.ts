@@ -5,7 +5,7 @@ import { NotFoundError } from "@new-developers/work";
 
 const router = express.Router();
 router.get("/api/tickets", async (req: Request, res: Response) => {
-  const ticket = await Ticket.find({});
+  const ticket = await Ticket.find({ orderId: undefined });
   if (!ticket) {
     throw new NotFoundError();
   }

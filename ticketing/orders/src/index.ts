@@ -1,6 +1,7 @@
 import Mongoose from "mongoose";
 import { natsWrapper } from "./nats-wrapper";
 import "express-async-errors";
+import { PaymentCreatedListener } from "./events/listeners/payment-created-listener";
 import { app } from "./app";
 import { TicketCreatedListener } from "./events/listeners/ticket-created-listener";
 import { TicketUpdatedListener } from "./events/listeners/ticket-updated-listener";
@@ -36,6 +37,7 @@ const start = async () => {
     new TicketCreatedListener(natsWrapper.client).listen();
     new TicketUpdatedListener(natsWrapper.client).listen();
     new ExpirationCompleteListener(natsWrapper.client).listen();
+    new PaymentCreatedListener(natsWrapper.client).listen();
     await Mongoose.connect(process.env.MONGO_URI);
     console.log("connected to mongodb");
   } catch (err) {
