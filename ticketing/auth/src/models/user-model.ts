@@ -4,7 +4,7 @@ interface UserAttrs {
   email: string;
   password: string;
 }
-// hello word
+
 interface UserDoc extends mongoose.Document {
   email: string;
   password: string;
