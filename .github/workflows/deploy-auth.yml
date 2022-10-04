@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'ticketing/auth/**'
+      - "ticketing/auth/**"
 
 jobs:
   build:
@@ -16,10 +16,10 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd ticketiing/auth && docker build -t 27334774/auth .
+      - run: cd ticketing/auth && docker build -t 27334774/auth .
       - run: docker push 27334774/auth
-#       - uses: digitalocean/action-doctl@v2
-#         with:
-#           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-#       - run: doctl kubernetes cluster kubeconfig save ticketing
-#       - run: kubectl rollout restart deployment auth-depl
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save ticketing
+      - run: kubectl rollout restart deployment auth-depl
