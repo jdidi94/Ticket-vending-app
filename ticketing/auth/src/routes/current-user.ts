@@ -4,7 +4,7 @@ const router = express.Router();
 import { currentUser } from "@new-developers/work";
 
 router.get("/api/users/currentuser", currentUser, async (req, res) => {
-  console.log("hi brother");
+  console.log("see the chenges ");
 
   res.send({ currentUser: req.currentUser || null });
 });
