@@ -7,7 +7,7 @@ import { errorHandler, NotFoundError, currentUser } from "@new-developers/work";
 import { showTicketRouter } from "./routes/show";
 import { fetchTickets } from "./routes/index";
 import { updateTicketRouter } from "./routes/updates";
-
+console.log("we are here");
 const app = express();
 app.set("tust proxy", true);
 app.use(json());
