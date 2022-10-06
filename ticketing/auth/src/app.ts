@@ -8,7 +8,7 @@ import { signinRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
 const app = express();
-console.log("we are here");
+
 app.set("tust proxy", true);
 app.use(json());
 app.use(
