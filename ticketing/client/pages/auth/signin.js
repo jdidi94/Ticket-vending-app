@@ -30,7 +30,7 @@ const Signin = () => {
         />
       </div>
       <div className="form-group">
-        <label>Your password</label>
+        <label>password</label>
         <input
           type="password"
           onChange={(e) => setPassword(e.target.value)}

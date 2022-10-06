@@ -7,7 +7,7 @@ import { errorHandler, NotFoundError, currentUser } from "@new-developers/work";
 import { showOrderRouter } from "./routes/show";
 import { fetchOrders } from "./routes/index";
 import { deleteOrderRouter } from "./routes/delete";
-console.log("we are here");
+
 const app = express();
 app.set("tust proxy", true);
 app.use(json());
