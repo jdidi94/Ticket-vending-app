@@ -16,7 +16,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: cd ticketing/auth && docker build -t 27334774/tickets .
+      - run: cd ticketing/tickets && docker build -t 27334774/tickets .
       - run: docker push 27334774/tickets
       - uses: digitalocean/action-doctl@v2
         with:
