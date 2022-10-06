@@ -5,7 +5,7 @@ import cookieSession from "cookie-session";
 import { createChargeRouter } from "./routes/new";
 
 import { errorHandler, NotFoundError, currentUser } from "@new-developers/work";
-
+console.log("we are here");
 const app = express();
 app.set("tust proxy", true);
 app.use(json());
